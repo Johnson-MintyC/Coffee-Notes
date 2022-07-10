@@ -12,11 +12,24 @@ PORT = 3050;
 const app = express();
 
 //////////////////////////////////////////
-//      Test Route
+//      Test Routes
 //////////////////////////////////////////
+//Index Route
 app.get("/", (req, res) => {
   res.send("Test Connection");
 });
+
+//new Form
+app.get("/new", (req, res) => {
+  res.send("New Form");
+});
+
+//post the Form
+app.post("/", (req, res) => {
+  console.log(req.body);
+});
+
+//Show Route
 
 //////////////////////////////////////////
 //      Listener
