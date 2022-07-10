@@ -3,6 +3,10 @@
 /////////////////////////////////////////
 
 const express = require("express");
+const mongoose = require("mongoose");
+const methodOverride = require("method-override");
+
+const coffeelogRouter = require("./controllers/coffeelog");
 
 /////////////////////////////////////////
 //      Instantiatition/Variables
@@ -11,25 +15,15 @@ PORT = 3050;
 
 const app = express();
 
-//////////////////////////////////////////
-//      Test Routes
-//////////////////////////////////////////
-//Index Route
-app.get("/", (req, res) => {
-  res.send("Test Connection");
-});
+/////////////////////////////////////////
+//      Middleware
+/////////////////////////////////////////
 
-//new Form
-app.get("/new", (req, res) => {
-  res.send("New Form");
-});
+/////////////////////////////////////////
+//      Routes
+/////////////////////////////////////////
 
-//post the Form
-app.post("/", (req, res) => {
-  console.log(req.body);
-});
-
-//Show Route
+app.use("/", coffeelogRouter);
 
 //////////////////////////////////////////
 //      Listener
