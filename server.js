@@ -9,9 +9,10 @@ const methodOverride = require("method-override");
 const coffeelogRouter = require("./controllers/coffeelog");
 
 /////////////////////////////////////////
-//      Instantiatition/Variables
+//      Instantiations/Variables
 /////////////////////////////////////////
-PORT = 3050;
+const PORT = 3050;
+const dbURL = "mongodb://127.0.0.1:27017/coffeenotes";
 
 const app = express();
 
@@ -26,8 +27,12 @@ const app = express();
 app.use("/", coffeelogRouter);
 
 //////////////////////////////////////////
-//      Listener
+//      Connection Listeners
 //////////////////////////////////////////
+
+mongoose.connect(dbURL, () => {
+  console.log("Connected to mongodb");
+});
 
 app.listen(PORT, () => {
   console.log("Server listening on port ", PORT);
