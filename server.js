@@ -1,6 +1,7 @@
 /////////////////////////////////////////
 //      Dependencies
 /////////////////////////////////////////
+require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -11,8 +12,8 @@ const coffeelogRouter = require("./controllers/coffeelog");
 /////////////////////////////////////////
 //      Instantiations/Variables
 /////////////////////////////////////////
-const PORT = 3050;
-const dbURL = "mongodb://127.0.0.1:27017/coffeenotes";
+const PORT = process.env.PORT;
+const dbURL = process.env.MONGODB_URL;
 
 const app = express();
 

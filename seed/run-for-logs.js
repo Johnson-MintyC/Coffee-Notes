@@ -1,10 +1,15 @@
+require("dotenv").config();
+
 const mongoose = require("mongoose");
 const Coffeelog = require("../models/coffeelog");
 
 const dummyCoffeelogs = require("./data-logs");
 
-const dbURL = "mongodb://127.0.0.1:27017/coffeenotes";
+const dbURL = process.env.MONGODB_URL;
 
+//////////////////////////////////////////////
+//          Starter Seed
+//////////////////////////////////////////////
 mongoose.connect(dbURL, () => {
   console.log("Connected to coffeenotes db");
   Coffeelog.insertMany(dummyCoffeelogs).then(() => {
