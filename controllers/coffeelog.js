@@ -36,9 +36,9 @@ coffeelogRouter.post("/", (req, res) => {
     coffeedose: req.body.coffeedose,
     watervolume: req.body.watervolume,
     watertemp: req.body.watertemp,
-    flavors: req.body.flavornotes.split("#"),
-    comments: [req.body.comments],
-    img: [req.body.img],
+    flavors: req.body.flavornotes.split("#").filter(Boolean),
+    comments: [req.body.comments].filter(Boolean),
+    img: [req.body.img].filter(Boolean),
   });
   res.redirect("/");
 });
@@ -49,6 +49,17 @@ coffeelogRouter.get("/:id", (req, res) => {
     .exec()
     .then((coffeelog) => {
       res.render("coffeelogs/show.ejs", {
+        coffeelog: coffeelog,
+      });
+    });
+});
+
+//Edit Form Route
+coffeelogRouter.get("/:id/edit", (req, res) => {
+  Coffeelog.findById(req.params.id)
+    .exec()
+    .then((coffeelog) => {
+      res.render("coffeelogs/edit.ejs", {
         coffeelog: coffeelog,
       });
     });
