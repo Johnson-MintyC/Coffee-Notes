@@ -9,7 +9,13 @@ const Coffeelog = require("../models/coffeelog");
 //////////////////////////////////////////
 //Index Route
 coffeelogRouter.get("/", (req, res) => {
-  res.send("Test Connection");
+  Coffeelog.find()
+    .exec()
+    .then((coffeelogs) => {
+      res.render("index.ejs", {
+        coffeelogs: coffeelogs,
+      });
+    });
 });
 
 //new Form
