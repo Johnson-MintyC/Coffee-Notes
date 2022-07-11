@@ -20,7 +20,7 @@ coffeelogRouter.get("/", (req, res) => {
 
 //new Form
 coffeelogRouter.get("/new", (req, res) => {
-  res.send("New Form");
+  res.render("coffeelogs/new.ejs", {});
 });
 
 //post the Form
