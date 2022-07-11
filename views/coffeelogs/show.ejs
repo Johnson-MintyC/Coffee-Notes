@@ -9,5 +9,9 @@
 <body>
     <h1>Show Text</h1>
     <p><%= coffeelog.roasters %></p>
+
+    <form action="/<%= coffeelog._id %>?_method=delete" method="post">
+        <input type="submit" value="Delete">
+    </form>
 </body>
 </html>

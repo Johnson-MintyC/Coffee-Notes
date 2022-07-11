@@ -25,7 +25,21 @@ coffeelogRouter.get("/new", (req, res) => {
 
 //post the Form
 coffeelogRouter.post("/", (req, res) => {
-  Coffeelog.create(req.body);
+  Coffeelog.create({
+    roasters: req.body.roasters,
+    blend: req.body.blend,
+    method: req.body.method,
+    rating: req.body.rating,
+    grindsize: req.body.grindsize,
+    beanorigin: req.body.beanorigin,
+    roastlevel: req.body.roastlevel,
+    coffeedose: req.body.coffeedose,
+    watervolume: req.body.watervolume,
+    watertemp: req.body.watertemp,
+    flavors: req.body.flavornotes.split("#"),
+    comments: [req.body.comments],
+    img: [req.body.img],
+  });
   res.redirect("/");
 });
 
@@ -37,6 +51,15 @@ coffeelogRouter.get("/:id", (req, res) => {
       res.render("coffeelogs/show.ejs", {
         coffeelog: coffeelog,
       });
+    });
+});
+
+//Delete Route
+coffeelogRouter.delete("/:id", (req, res) => {
+  Coffeelog.findByIdAndDelete(req.params.id)
+    .exec()
+    .then(() => {
+      res.redirect("/");
     });
 });
 
