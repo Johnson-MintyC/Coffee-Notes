@@ -16,10 +16,13 @@ const PORT = process.env.PORT;
 const dbURL = process.env.MONGODB_URL;
 
 const app = express();
+app.use(methodOverride("_method"));
+app.use(express.static("public"));
 
 /////////////////////////////////////////
 //      Middleware
 /////////////////////////////////////////
+app.use(express.urlencoded({ extended: false }));
 
 /////////////////////////////////////////
 //      Routes
