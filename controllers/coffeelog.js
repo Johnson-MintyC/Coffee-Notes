@@ -12,7 +12,7 @@ coffeelogRouter.get("/", (req, res) => {
   Coffeelog.find()
     .exec()
     .then((coffeelogs) => {
-      res.render("index.ejs", {
+      res.render("coffeelogs/index.ejs", {
         coffeelogs: coffeelogs,
       });
     });
@@ -25,10 +25,19 @@ coffeelogRouter.get("/new", (req, res) => {
 
 //post the Form
 coffeelogRouter.post("/", (req, res) => {
-  console.log(req.body);
+  Coffeelog.create(req.body);
 });
 
 //Show Route
+coffeelogRouter.get("/:id", (req, res) => {
+  Coffeelog.findById(req.params.id)
+    .exec()
+    .then((coffeelog) => {
+      res.render("coffeelogs/show.ejs", {
+        coffeelog: coffeelog,
+      });
+    });
+});
 
 ///////////////////////////////////////////
 //  Export Routes to Server
