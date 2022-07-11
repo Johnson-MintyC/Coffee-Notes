@@ -26,6 +26,7 @@ coffeelogRouter.get("/new", (req, res) => {
 //post the Form
 coffeelogRouter.post("/", (req, res) => {
   Coffeelog.create(req.body);
+  res.redirect("/");
 });
 
 //Show Route

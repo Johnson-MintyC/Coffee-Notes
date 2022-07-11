@@ -8,5 +8,24 @@
 </head>
 <body>
     <h1>New Form</h1>
+    <form action="/" method="post">
+        <p>
+            <label name="roasters">Brand/Roasters: </label>
+            <input type="text" name="roasters" id="roasters" required>
+        </p>
+        <p>
+            <label name="blend">Blend: </label>
+            <input type="text" name="blend" id="blend" required>
+        </p>
+        <p>
+            <label name="method">Method: </label>
+            <input type="text" name="method" id="method" required>
+        </p>
+        <p>
+            <label name="rating">Rating: </label>
+            <input type="number" name="rating" id="rating" min="0" max="5" required>
+        </p>
+        <input type="submit" value="Log Entry">
+    </form>
 </body>
 </html>

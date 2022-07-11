@@ -10,7 +10,8 @@
     <h1>Index Page</h1>
     <% for (let log of coffeelogs) { %>
         <div>
-            <h2><%= log.roasters %></h2>
+            <h3><a href=""><%= log.roasters %></a></h3>
+            <h4><%= log.blend %></h4>
             <p><%= log._id %></p>
         </div>
     <% } %> 
