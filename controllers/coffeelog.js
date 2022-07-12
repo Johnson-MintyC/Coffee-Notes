@@ -2,6 +2,7 @@ const express = require("express");
 
 const coffeelogRouter = express.Router();
 
+const upload = require("../middlewares/upload");
 const Coffeelog = require("../models/coffeelog");
 
 //////////////////////////////////////////
@@ -24,16 +25,12 @@ coffeelogRouter.get("/new", (req, res) => {
 });
 
 //post the Form
-coffeelogRouter.post("/", (req, res) => {
+coffeelogRouter.post("/", upload.single("img"), (req, res) => {
   req.body.flavors = req.body.flavornotes.split("#").filter(Boolean);
   for (let i = 0; i < req.body.flavors.length; i++) {
     req.body.flavors[i] = req.body.flavors[i].trim();
   }
-  if (typeof req.body.img === "string") {
-    req.body.img = [req.body.img].filter(Boolean);
-  } else {
-    req.body.img = req.body.img;
-  }
+  req.body.img = req.file.path;
   Coffeelog.create(req.body);
   res.redirect("/");
 });
@@ -65,11 +62,6 @@ coffeelogRouter.put("/:id", (req, res) => {
   req.body.flavors = req.body.flavornotes.split("#").filter(Boolean);
   for (let i = 0; i < req.body.flavors.length; i++) {
     req.body.flavors[i] = req.body.flavors[i].trim();
-  }
-  if (typeof req.body.img === "string") {
-    req.body.img = [req.body.img].filter(Boolean);
-  } else {
-    req.body.img = req.body.img;
   }
   Coffeelog.findByIdAndUpdate(req.params.id, req.body)
     .exec()

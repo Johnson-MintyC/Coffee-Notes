@@ -17,7 +17,7 @@ const coffeelogSchema = new Schema(
     watertemp: { type: Number, min: 0 },
     flavors: [{ type: String }],
     comments: [{ type: String }],
-    img: [{ type: String }],
+    img: { type: String },
     // owner_id: { type: String, required: true },
   },
   { timestamps: true }
