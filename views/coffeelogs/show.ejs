@@ -7,11 +7,59 @@
     <title>Show</title>
 </head>
 <body>
-    <h1>Show Text</h1>
-    <p><%= coffeelog.roasters %></p>
+    <h1><%= coffeelog.roasters %></h1>
+    <img src="<%= coffeelog.img %>">
+    <h3><%= coffeelog.blend %></h3>
+    <h3><%= coffeelog.method %></h3>
+    <h3><%= coffeelog.rating %></h3>
 
+    <button onclick="location.href='/<%= coffeelog._id %>/edit'">Edit</button>
     <form action="/<%= coffeelog._id %>?_method=delete" method="post">
-        <input type="submit" value="Delete">
+        <button type="submit" value="Delete" onclick="return confirm('Delete this Entry?')">Delete</button>
     </form>
+
+    <h2>Addtional Information</h2>
+    <h3>Bean Info.</h3>
+    <h4>Grind Size</h4>
+    <% if (coffeelog.grindsize) { %>
+        <p><%= coffeelog.grindsize %></p>
+    <% } else { %>
+        <p>n/a</p>
+    <% } %>
+    <h4>Roast Level</h4>
+    <% if (coffeelog.roastlevel) { %>
+        <p><%= coffeelog.roastlevel %></p>
+    <% } else { %>
+        <p>n/a</p>
+    <% } %>
+    <h4>Bean Origin</h4>
+    <% if (coffeelog.beanorigin) { %>
+        <p><%= coffeelog.beanorigin %></p>
+    <% } else { %>
+        <p>n/a</p>
+    <% } %>
+    <h3>Preparation</h3>
+    <h4>Coffee Dose</h4>
+    <% if (coffeelog.coffeedose) { %>
+        <p><%= coffeelog.coffeedose %></p>
+    <% } else { %>
+        <p>n/a</p>
+    <% } %>
+    <h4>Water Volume</h4>
+    <% if (coffeelog.watervolume) { %>
+        <p><%= coffeelog.watervolume %></p>
+    <% } else { %>
+        <p>n/a</p>
+    <% } %>
+    <h4>Water Temperature</h4>
+    <% if (coffeelog.watertemp) { %>
+        <p><%= coffeelog.watertemp %></p>
+    <% } else { %>
+        <p>n/a</p>
+    <% } %>
+    <% if (coffeelog.coffeedose && coffeelog.watervolume) { %>
+        <h4>Ratio</h4>
+        <p>1:<%= Math.round((coffeelog.watervolume/coffeelog.coffeedose)*100)/100 %></p>
+    <% } %>
 </body>
 </html>

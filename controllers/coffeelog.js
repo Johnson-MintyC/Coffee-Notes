@@ -25,21 +25,16 @@ coffeelogRouter.get("/new", (req, res) => {
 
 //post the Form
 coffeelogRouter.post("/", (req, res) => {
-  Coffeelog.create({
-    roasters: req.body.roasters,
-    blend: req.body.blend,
-    method: req.body.method,
-    rating: req.body.rating,
-    grindsize: req.body.grindsize,
-    beanorigin: req.body.beanorigin,
-    roastlevel: req.body.roastlevel,
-    coffeedose: req.body.coffeedose,
-    watervolume: req.body.watervolume,
-    watertemp: req.body.watertemp,
-    flavors: req.body.flavornotes.split("#").filter(Boolean),
-    comments: [req.body.comments].filter(Boolean),
-    img: [req.body.img].filter(Boolean),
-  });
+  req.body.flavors = req.body.flavornotes.split("#").filter(Boolean);
+  for (let i = 0; i < req.body.flavors.length; i++) {
+    req.body.flavors[i] = req.body.flavors[i].trim();
+  }
+  if (typeof req.body.img === "string") {
+    req.body.img = [req.body.img].filter(Boolean);
+  } else {
+    req.body.img = req.body.img;
+  }
+  Coffeelog.create(req.body);
   res.redirect("/");
 });
 
@@ -62,6 +57,24 @@ coffeelogRouter.get("/:id/edit", (req, res) => {
       res.render("coffeelogs/edit.ejs", {
         coffeelog: coffeelog,
       });
+    });
+});
+
+//Edit PUT Route
+coffeelogRouter.put("/:id", (req, res) => {
+  req.body.flavors = req.body.flavornotes.split("#").filter(Boolean);
+  for (let i = 0; i < req.body.flavors.length; i++) {
+    req.body.flavors[i] = req.body.flavors[i].trim();
+  }
+  if (typeof req.body.img === "string") {
+    req.body.img = [req.body.img].filter(Boolean);
+  } else {
+    req.body.img = req.body.img;
+  }
+  Coffeelog.findByIdAndUpdate(req.params.id, req.body)
+    .exec()
+    .then(() => {
+      res.redirect("/");
     });
 });
 

@@ -7,6 +7,9 @@ module.exports = [
     grindsize: "Pre-Grounded",
     roastlevel: "Light",
     brewlocation: "Starbucks",
+    img: [
+      "https://loremflickr.com/cache/resized/65535_50762133568_773b32bf30_320_240_nofilter.jpg",
+    ],
   },
   {
     roasters: "Nescafe",

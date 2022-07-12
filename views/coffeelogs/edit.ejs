@@ -8,5 +8,111 @@
 </head>
 <body>
     <h1>Edit Form</h1>
+    <form action="/<%= coffeelog.id %>?_method=PUT" method="post">
+        <p>
+            <label name="roasters">Brand/Roasters: </label>
+            <input type="text" name="roasters" id="roasters" value="<%= coffeelog.roasters %>" required>
+        </p>
+        <p>
+            <label name="blend">Blend: </label>
+            <input type="text" name="blend" id="blend" value="<%= coffeelog.blend %>" required>
+        </p>
+        <p>
+            <label name="method">Method: </label>
+            <input type="text" name="method" id="method" list="commonmethods" value="<%= coffeelog.method %>" required>
+            <datalist id="commonmethods">
+                <option>Expresso</option>
+                <option>Pour Over</option>
+                <option>Drip</option>
+                <option>Cold Brew</option>
+                <option>Press</option>
+                <option>Cupping</option>
+                <option>Siphon</option>
+                <option>Instant</option>
+            </datalist>
+        </p>
+        <p>
+            <label name="rating">Rating: </label>
+            <input type="number" name="rating" id="rating" min="0" max="5" value="<%= coffeelog.rating %>" required>
+        </p>
+        <h3>Optional Details</h3>
+        <p>
+            <label name="brewlocation">Brew Location: </label>
+            <input type="text" name="brewlocation" id="brewlocation" list="blocations" value="<%= coffeelog.brewlocation %>">
+            <datalist id="blocations">
+                <option>Home</option>
+            </datalist>
+        </p>
+        <p>
+            <label name="grindsize">Grind Size: </label>
+            <input type="text" name="grindsize" id="grindsize" list="genericsizes" value="<%= coffeelog.grindsize %>">
+            <datalist id="genericsizes">
+                <option>Fine</option>
+                <option>Medium</option>
+                <option>Coarse</option>
+                <option>Pre-Grounded</option>
+            </datalist>
+        </p>
+        <p>
+            <label name="roastlevel">Roast Level: </label>
+            <input type="text" name="roastlevel" id="roastlevel" list="commonroasts" value="<%= coffeelog.roastlevel %>">
+            <datalist id="commonroasts">
+                <option>Light</option>
+                <option>Medium</option>
+                <option>Medium-Dark</option>
+                <option>Dark</option>
+            </datalist>
+        </p>
+        <p>
+            <label name="beanorigin">Bean Origin: </label>
+            <input type="text" name="beanorigin" id="beanorigin" list="commonvarieties" value="<%= coffeelog.beanorigin %>">
+            <datalist id="commonvarieties">
+                <option>Arabica</option>
+                <option>Robusta</option>
+                <option>Liberica</option>
+                <option>Excelsa</option>
+            </datalist>
+        </p>
+        <p>
+            <label name="coffeedose">Coffee Dose: </label>
+            <input type="number" name="coffeedose" id="coffeedose" min="0" value="<%= coffeelog.coffeedose %>">
+            grams / oz
+        </p>
+        <p>
+            <label name="watervolume">Water Volume: </label>
+            <input type="number" name="watervolume" id="watervolume" min="0" value="<%= coffeelog.watervolume %>">
+            mL / oz
+        </p>
+        <p>
+            <label name="watertemp">Water Temperature: </label>
+            <input type="number" name="watertemp" id="watertemp" min="0" value="<%= coffeelog.watertemp %>">
+            °C / °F
+        </p>
+        <h4>Flavors</h4>
+        <p>
+            <label name="flavornotes">Flavor Notes: </label>
+            <br>
+            <textarea name="flavornotes" id="flavornotes"><% if (coffeelog.flavors) { %>#<%= coffeelog.flavors.join(" #") %><% } %></textarea>
+            <br>
+            Separate the flavor notes by using hashtags #
+            <br>
+            e.g. #Chocolate #Acidic #Full Bodied
+        </p>
+        <h4>Additional Comments</h4>
+        <p>
+            <label name="comments">Comments: </label>
+            <br>
+            <textarea name="comments" id="comments"><%= coffeelog.comments %></textarea>
+        </p>
+        <h4>Image</h4>
+        <% for (let i = 0; i < coffeelog.img.length; i++) { %>
+        <p>
+            <label name="img">Image: </label>
+            <input type="file" name="img" id="img" value="<%= coffeelog.img[i] %>">
+        </p>
+        <% } %>
+        
+        <input type="submit" value="Update Entry">
+    </form>
 </body>
 </html>
