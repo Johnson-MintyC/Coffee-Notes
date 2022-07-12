@@ -18,7 +18,7 @@ const coffeelogSchema = new Schema(
     flavors: [{ type: String }],
     comments: [{ type: String }],
     img: { type: String },
-    // owner_id: { type: String, required: true },
+    owner_id: { type: String, required: true },
   },
   { timestamps: true }
 );

@@ -4,6 +4,7 @@ const coffeelogRouter = express.Router();
 
 const upload = require("../middlewares/upload");
 const Coffeelog = require("../models/coffeelog");
+const User = require("../models/users");
 
 //////////////////////////////////////////
 //      Test Routes
@@ -39,6 +40,7 @@ coffeelogRouter.post("/", upload.single("img"), (req, res) => {
     req.body.img =
       "https://loremflickr.com/cache/resized/7905_46862788644_dd275076b9_400_300_nofilter.jpg";
   }
+  req.body.owner_id = req.session.currentUser._id;
   Coffeelog.create(req.body);
   res.redirect("/");
 });
@@ -48,9 +50,14 @@ coffeelogRouter.get("/:id", (req, res) => {
   Coffeelog.findById(req.params.id)
     .exec()
     .then((coffeelog) => {
-      res.render("coffeelogs/show.ejs", {
-        coffeelog: coffeelog,
-      });
+      User.findById(coffeelog.owner_id)
+        .exec()
+        .then((user) => {
+          res.render("coffeelogs/show.ejs", {
+            coffeelog: coffeelog,
+            user: user,
+          });
+        });
     });
 });
 

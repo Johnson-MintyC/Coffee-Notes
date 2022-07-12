@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= tabTitle %></title>
+</head>
+<body>
+    <div class="container">
+        <header>
+          <h1><a href="/">Home</a></h1>
+          <nav>
+            <% if (currentUser) {%>
+              <div>
+                <a class="button button-primary" href="<%= baseUrl %>/new">Add Entry</a>
+              </div>
+    
+              <form action="/logout?_method=DELETE" method="post">
+                <input type="submit" value="Log Out" />
+              </form>
+            <% } else { %>
+              <a href="/login">Log In</a>
+            <% } %>
+          </nav>
+        </header>

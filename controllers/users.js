@@ -21,12 +21,11 @@ userRouter.post("/", (req, res) => {
   User.create(req.body)
     .then((newUser) => {
       console.log("created user is: ", newUser);
-      res.redirect("/"); // app root ("home page") or somewhere else
+      res.redirect("/"); // app root ("home page")
     })
     .catch((err) => {
       req.flash("info", "Username already exists");
       res.redirect(req.baseUrl + "/signup");
-      console.log("error");
     });
 });
 

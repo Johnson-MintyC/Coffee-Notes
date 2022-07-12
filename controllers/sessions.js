@@ -26,11 +26,9 @@ sessionsRouter.post("/login", (req, res) => {
         user.password
       );
       if (!passwordIsCorrect) {
-        console.log("password is wrong");
         req.flash("error", "Username or password is incorrect");
         res.redirect(req.baseUrl + "/login");
       } else {
-        console.log(user, "logged in");
         req.session.currentUser = user;
         res.redirect("/");
       }
