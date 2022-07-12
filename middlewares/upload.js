@@ -13,5 +13,4 @@ const upload = multer({
   }),
 });
 
-console.log(cloudinary.config());
 module.exports = upload;

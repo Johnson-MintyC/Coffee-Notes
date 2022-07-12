@@ -19,47 +19,67 @@
     </form>
 
     <h2>Addtional Information</h2>
-    <h3>Bean Info.</h3>
-    <h4>Grind Size</h4>
-    <% if (coffeelog.grindsize) { %>
-        <p><%= coffeelog.grindsize %></p>
-    <% } else { %>
-        <p>n/a</p>
-    <% } %>
-    <h4>Roast Level</h4>
-    <% if (coffeelog.roastlevel) { %>
-        <p><%= coffeelog.roastlevel %></p>
-    <% } else { %>
-        <p>n/a</p>
-    <% } %>
-    <h4>Bean Origin</h4>
-    <% if (coffeelog.beanorigin) { %>
-        <p><%= coffeelog.beanorigin %></p>
-    <% } else { %>
-        <p>n/a</p>
-    <% } %>
-    <h3>Preparation</h3>
-    <h4>Coffee Dose</h4>
-    <% if (coffeelog.coffeedose) { %>
-        <p><%= coffeelog.coffeedose %></p>
-    <% } else { %>
-        <p>n/a</p>
-    <% } %>
-    <h4>Water Volume</h4>
-    <% if (coffeelog.watervolume) { %>
-        <p><%= coffeelog.watervolume %></p>
-    <% } else { %>
-        <p>n/a</p>
-    <% } %>
-    <h4>Water Temperature</h4>
-    <% if (coffeelog.watertemp) { %>
-        <p><%= coffeelog.watertemp %></p>
-    <% } else { %>
-        <p>n/a</p>
-    <% } %>
-    <% if (coffeelog.coffeedose && coffeelog.watervolume) { %>
-        <h4>Ratio</h4>
-        <p>1:<%= Math.round((coffeelog.watervolume/coffeelog.coffeedose)*100)/100 %></p>
-    <% } %>
+    <div class="beaninfo">
+        <h3>Bean Info.</h3>
+        <h4>Grind Size</h4>
+        <% if (coffeelog.grindsize) { %>
+            <p><%= coffeelog.grindsize %></p>
+        <% } else { %>
+            <p>n/a</p>
+        <% } %>
+        <h4>Roast Level</h4>
+        <% if (coffeelog.roastlevel) { %>
+            <p><%= coffeelog.roastlevel %></p>
+        <% } else { %>
+            <p>n/a</p>
+        <% } %>
+        <h4>Bean Origin</h4>
+        <% if (coffeelog.beanorigin) { %>
+            <p><%= coffeelog.beanorigin %></p>
+        <% } else { %>
+            <p>n/a</p>
+        <% } %>
+    </div>
+    <div class="coffeeprep">
+        <h3>Preparation</h3>
+        <h4>Coffee Dose</h4>
+        <% if (coffeelog.coffeedose) { %>
+            <p><%= coffeelog.coffeedose %></p>
+        <% } else { %>
+            <p>n/a</p>
+        <% } %>
+        <h4>Water Volume</h4>
+        <% if (coffeelog.watervolume) { %>
+            <p><%= coffeelog.watervolume %></p>
+        <% } else { %>
+            <p>n/a</p>
+        <% } %>
+        <h4>Water Temperature</h4>
+        <% if (coffeelog.watertemp) { %>
+            <p><%= coffeelog.watertemp %></p>
+        <% } else { %>
+            <p>n/a</p>
+        <% } %>
+        <% if (coffeelog.coffeedose && coffeelog.watervolume) { %>
+            <h4>Ratio</h4>
+            <p>1:<%= Math.round((coffeelog.watervolume/coffeelog.coffeedose)*100)/100 %></p>
+        <% } %>
+    </div>
+    <div class="flavorlist">
+        <h3>Flavors</h3>
+        <ul>
+        <% for (let flav of coffeelog.flavors) { %>
+            <li><%= flav %></li>
+        <% } %>
+        </ul>
+    </div>
+    <div class="usercomments">
+        <h3>Tasters Comments</h3>
+        <% if (coffeelog.comments) { %>
+            <p><%= coffeelog.comments %></p>
+        <% } else { %>
+            <p>n/a</p>
+        <% } %>
+    </div>
 </body>
 </html>

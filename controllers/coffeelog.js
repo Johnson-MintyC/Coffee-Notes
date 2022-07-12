@@ -30,7 +30,12 @@ coffeelogRouter.post("/", upload.single("img"), (req, res) => {
   for (let i = 0; i < req.body.flavors.length; i++) {
     req.body.flavors[i] = req.body.flavors[i].trim();
   }
-  req.body.img = req.file.path;
+  if (req.file) {
+    req.body.img = req.file.path;
+  } else {
+    req.body.img =
+      "https://loremflickr.com/cache/resized/7905_46862788644_dd275076b9_400_300_nofilter.jpg";
+  }
   Coffeelog.create(req.body);
   res.redirect("/");
 });
@@ -58,10 +63,13 @@ coffeelogRouter.get("/:id/edit", (req, res) => {
 });
 
 //Edit PUT Route
-coffeelogRouter.put("/:id", (req, res) => {
+coffeelogRouter.put("/:id", upload.single("img"), (req, res) => {
   req.body.flavors = req.body.flavornotes.split("#").filter(Boolean);
   for (let i = 0; i < req.body.flavors.length; i++) {
     req.body.flavors[i] = req.body.flavors[i].trim();
+  }
+  if (req.file) {
+    req.body.img = req.file.path;
   }
   Coffeelog.findByIdAndUpdate(req.params.id, req.body)
     .exec()

@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Edit Form</h1>
-    <form action="/<%= coffeelog.id %>?_method=PUT" method="post">
+    <form action="/<%= coffeelog.id %>?_method=PUT" method="post" enctype="multipart/form-data">
         <p>
             <label name="roasters">Brand/Roasters: </label>
             <input type="text" name="roasters" id="roasters" value="<%= coffeelog.roasters %>" required>
@@ -92,7 +92,7 @@
         <p>
             <label name="flavornotes">Flavor Notes: </label>
             <br>
-            <textarea name="flavornotes" id="flavornotes"><% if (coffeelog.flavors) { %>#<%= coffeelog.flavors.join(" #") %><% } %></textarea>
+            <textarea name="flavornotes" id="flavornotes"><% if (coffeelog.flavors[0]) { %>#<%= coffeelog.flavors.join(" #") %><% } %></textarea>
             <br>
             Separate the flavor notes by using hashtags #
             <br>
@@ -105,12 +105,10 @@
             <textarea name="comments" id="comments"><%= coffeelog.comments %></textarea>
         </p>
         <h4>Image</h4>
-        <% for (let i = 0; i < coffeelog.img.length; i++) { %>
         <p>
             <label name="img">Image: </label>
-            <input type="file" name="img" id="img" value="<%= coffeelog.img[i] %>">
+            <input type="file" name="img" id="img" value="<%= coffeelog.img %>">
         </p>
-        <% } %>
         
         <input type="submit" value="Update Entry">
     </form>
