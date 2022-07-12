@@ -54,6 +54,7 @@ coffeelogRouter.get("/:id", (req, res) => {
         .exec()
         .then((user) => {
           res.render("coffeelogs/show.ejs", {
+            currentUser: req.session.currentUser,
             coffeelog: coffeelog,
             user: user,
           });

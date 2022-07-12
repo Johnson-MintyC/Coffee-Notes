@@ -7,17 +7,22 @@
     <title>Show</title>
 </head>
 <body>
-    <h1><%= coffeelog.roasters %></h1>
-    <img src="<%= coffeelog.img %>">
-    <h3><%= coffeelog.blend %></h3>
-    <h3><%= coffeelog.method %></h3>
-    <h3><%= coffeelog.rating %></h3>
+    <div class="coffeemaininfo">
+        <h1><%= coffeelog.roasters %></h1>
+        <img src="<%= coffeelog.img %>">
+        <h3><%= coffeelog.blend %></h3>
+        <h3><%= coffeelog.method %></h3>
+        <h3><%= coffeelog.rating %></h3>
 
-    <button onclick="location.href='/<%= coffeelog._id %>/edit'">Edit</button>
-    <form action="/<%= coffeelog._id %>?_method=delete" method="post">
-        <button type="submit" value="Delete" onclick="return confirm('Delete this Entry?')">Delete</button>
-    </form>
-
+        <% if (currentUser) { %>
+            <% if (currentUser._id == coffeelog.owner_id) { %>
+            <button onclick="location.href='/<%= coffeelog._id %>/edit'">Edit</button>
+            <form action="/<%= coffeelog._id %>?_method=delete" method="post">
+                <button type="submit" value="Delete" onclick="return confirm('Delete this Entry?')">Delete</button>
+            </form>
+            <% } %>
+        <% } %>
+    </div>
     <h2>Addtional Information</h2>
     <div class="beaninfo">
         <h3>Bean Info.</h3>
