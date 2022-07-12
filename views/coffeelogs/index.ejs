@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Index Page</h1>
+    <h2>Hello <%= currentUser.username %></h2>
     <% for (let log of coffeelogs) { %>
         <div>
             <h3><a href="/<%= log._id %>"><%= log.roasters %></a></h3>

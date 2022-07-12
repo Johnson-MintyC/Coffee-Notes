@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Log In</h1>
+        <div class="flash-messages">
+          <% if (messages.success) { %>
+            <% for (let msg of messages.success) { %>
+              <p class="success"><%= msg %></p>
+            <% } %>
+          <% } %>
+          <% if (messages.info) { %>
+            <% for (let msg of messages.info) { %>
+              <p class="info"><%= msg %></p>
+            <% } %>
+          <% } %>
+          <% if (messages.error) { %>
+            <% for (let msg of messages.error) { %>
+              <p class="error"><%= msg %></p>
+            <% } %>
+          <% } %>
+        </div>
+      
+        <form action="<%= baseUrl %>/login" method="post">
+          <p>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required />
+          </p>
+          <p>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required />
+          </p>
+      
+          <input class="button button-primary" type="submit" value="Login" />
+      
+          <p>
+            Don't have an account yet?
+            <a href="/users/signup">Sign up here</a>
+          </p>
+        </form>
+      </div>
+</body>
+</html>

@@ -14,7 +14,10 @@ coffeelogRouter.get("/", (req, res) => {
     .exec()
     .then((coffeelogs) => {
       res.render("coffeelogs/index.ejs", {
+        currentUser: req.session.currentUser,
         coffeelogs: coffeelogs,
+        baseUrl: req.baseUrl,
+        tabTitle: "Coffee Notes Home",
       });
     });
 });

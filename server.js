@@ -12,6 +12,7 @@ const mongoDBSession = require("connect-mongodb-session");
 
 const usersController = require("./controllers/users");
 const coffeelogRouter = require("./controllers/coffeelog");
+const sessionsController = require("./controllers/sessions");
 
 /////////////////////////////////////////
 //      Instantiations/Variables
@@ -49,6 +50,7 @@ app.use(express.static("public"));
 //      Routes
 /////////////////////////////////////////
 
+app.use("/", sessionsController);
 app.use("/", coffeelogRouter);
 app.use("/users", usersController);
 
