@@ -25,7 +25,9 @@ coffeelogRouter.get("/", (req, res) => {
 
 //new Form
 coffeelogRouter.get("/new", (req, res) => {
-  res.render("coffeelogs/new.ejs", {});
+  res.render("coffeelogs/new.ejs", {
+    tabTitle: "Add a new Entry",
+  });
 });
 
 //post the Form
@@ -50,7 +52,12 @@ coffeelogRouter.get("/myjournal", (req, res) => {
   Coffeelog.find({ owner_id: req.session.currentUser._id })
     .exec()
     .then((personalcoffeelogs) => {
-      res.send(personalcoffeelogs);
+      res.render("coffeelogs/journal.ejs", {
+        currentUser: req.session.currentUser,
+        coffeelogs: personalcoffeelogs,
+        baseUrl: req.baseUrl,
+        tabTitle: "My Journal",
+      });
     });
 });
 

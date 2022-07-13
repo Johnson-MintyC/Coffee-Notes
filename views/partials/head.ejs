@@ -12,13 +12,17 @@
           <h1><a href="/">Home</a></h1>
           <nav>
             <% if (currentUser) {%>
-              <div>
-                <a class="button button-primary" href="<%= baseUrl %>/new">Add Entry</a>
-              </div>
+                <div>
+                    <a class="button button-primary" href="<%= baseUrl %>/myjournal">My Journal</a>
+                </div>
+                <div>
+                    <a class="button button-primary" href="<%= baseUrl %>/new">Add Entry</a>
+                </div>
+              
     
-              <form action="/logout?_method=DELETE" method="post">
-                <input type="submit" value="Log Out" />
-              </form>
+                <form action="/logout?_method=DELETE" method="post">
+                    <input type="submit" value="Log Out" />
+                </form>
             <% } else { %>
               <a href="/login">Log In</a>
             <% } %>

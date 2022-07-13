@@ -1,0 +1,13 @@
+<%- include("../partials/head.ejs") %>
+
+    <h1><%= currentUser.username %>'s Journal</h1>
+    <% for (let log of coffeelogs) { %>
+        <div>
+            <h3><a href="/<%= log._id %>"><%= log.roasters %></a></h3>
+            <h4><%= log.blend %></h4>
+            <h4><%= log.method %></h4>
+            <h4><%= log.rating %></h4>
+        </div>
+    <% } %> 
+</body>
+</html>
