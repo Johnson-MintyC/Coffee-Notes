@@ -26,6 +26,8 @@ coffeelogRouter.get("/", (req, res) => {
 //new Form
 coffeelogRouter.get("/new", (req, res) => {
   res.render("coffeelogs/new.ejs", {
+    currentUser: req.session.currentUser,
+    baseUrl: req.baseUrl,
     tabTitle: "Add a new Entry",
   });
 });
@@ -56,7 +58,7 @@ coffeelogRouter.get("/myjournal", (req, res) => {
         currentUser: req.session.currentUser,
         coffeelogs: personalcoffeelogs,
         baseUrl: req.baseUrl,
-        tabTitle: "My Journal",
+        tabTitle: `${req.session.currentUser.username}'s Journal`,
       });
     });
 });
@@ -71,8 +73,10 @@ coffeelogRouter.get("/:id", (req, res) => {
         .then((user) => {
           res.render("coffeelogs/show.ejs", {
             currentUser: req.session.currentUser,
+            baseUrl: req.baseUrl,
             coffeelog: coffeelog,
             user: user,
+            tabTitle: `${coffeelog.roasters} ${coffeelog.blend}`,
           });
         });
     });
@@ -83,9 +87,16 @@ coffeelogRouter.get("/:id/edit", (req, res) => {
   Coffeelog.findById(req.params.id)
     .exec()
     .then((coffeelog) => {
-      res.render("coffeelogs/edit.ejs", {
-        coffeelog: coffeelog,
-      });
+      if (coffeelog.owner_id == req.session.currentUser._id) {
+        res.render("coffeelogs/edit.ejs", {
+          currentUser: req.session.currentUser,
+          baseUrl: req.baseUrl,
+          coffeelog: coffeelog,
+          tabTitle: `Editing ${coffeelog.roasters} ${coffeelog.blend}`,
+        });
+      } else {
+        res.redirect(req.baseUrl + "/" + req.params.id);
+      }
     });
 });
 
