@@ -63,6 +63,12 @@ coffeelogRouter.get("/myjournal", (req, res) => {
     });
 });
 
+//Search Results Route
+coffeelogRouter.get("/search", (req, res) => {
+  res.send("test");
+  console.log(req.query);
+});
+
 //Show Route
 coffeelogRouter.get("/:id", (req, res) => {
   Coffeelog.findById(req.params.id)

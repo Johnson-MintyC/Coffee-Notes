@@ -5,7 +5,7 @@ const User = require("../models/users");
 
 const userRouter = express.Router();
 
-// localhost:3000/users/signup
+// users/signup Route
 userRouter.get("/signup", (req, res) => {
   res.render("users/signup.ejs", {
     currentUser: req.session.currentUser,

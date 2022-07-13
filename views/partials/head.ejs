@@ -19,7 +19,10 @@
                     <a class="button button-primary" href="<%= baseUrl %>/new">Add Entry</a>
                 </div>
               
-    
+                <form action="search/" method="get">
+                  <label name="search">Search: </label>
+                  <input type="type" name="search" id="search" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }">
+                </form>
                 <form action="/logout?_method=DELETE" method="post">
                     <input type="submit" value="Log Out" />
                 </form>
