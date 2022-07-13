@@ -65,8 +65,39 @@ coffeelogRouter.get("/myjournal", (req, res) => {
 
 //Search Results Route
 coffeelogRouter.get("/search", (req, res) => {
-  res.send("test");
-  console.log(req.query);
+  Coffeelog.find({
+    $or: [
+      {
+        roasters: {
+          $regex: req.query.search,
+        },
+      },
+      {
+        blend: {
+          $regex: req.query.search,
+        },
+      },
+      {
+        method: {
+          $regex: req.query.search,
+        },
+      },
+      {
+        flavors: {
+          $regex: req.query.search,
+        },
+      },
+    ],
+  })
+    .exec()
+    .then((searchresults) => {
+      res.render("coffeelogs/search.ejs", {
+        currentUser: req.session.currentUser,
+        coffeelogs: searchresults,
+        baseUrl: req.baseUrl,
+        tabTitle: "Search Results",
+      });
+    });
 });
 
 //Show Route
