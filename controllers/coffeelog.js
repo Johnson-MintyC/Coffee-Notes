@@ -95,6 +95,7 @@ coffeelogRouter.get("/search", (req, res) => {
         currentUser: req.session.currentUser,
         coffeelogs: searchresults,
         baseUrl: req.baseUrl,
+        currentUrl: req.url,
         tabTitle: "Search Results",
       });
     });
