@@ -7,7 +7,7 @@ const Coffeelog = require("../models/coffeelog");
 const User = require("../models/users");
 
 //////////////////////////////////////////
-//      Test Routes
+//      Routes
 //////////////////////////////////////////
 //Index Route
 coffeelogRouter.get("/", (req, res) => {
@@ -43,6 +43,15 @@ coffeelogRouter.post("/", upload.single("img"), (req, res) => {
   req.body.owner_id = req.session.currentUser._id;
   Coffeelog.create(req.body);
   res.redirect("/");
+});
+
+//Personal Journals Route
+coffeelogRouter.get("/myjournal", (req, res) => {
+  Coffeelog.find({ owner_id: req.session.currentUser._id })
+    .exec()
+    .then((personalcoffeelogs) => {
+      res.send(personalcoffeelogs);
+    });
 });
 
 //Show Route
