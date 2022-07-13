@@ -80,5 +80,6 @@
         <% } %>
     </div>
     <p>Uploaded by <%= user.username %></p>
+    <p>On <%= moment(coffeelog.createdAt).format("YYYY-MM-DD HH:mm") %></p>
 </body>
 </html>

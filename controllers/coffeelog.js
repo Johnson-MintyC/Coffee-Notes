@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require("moment");
 
 const coffeelogRouter = express.Router();
 
@@ -114,6 +115,7 @@ coffeelogRouter.get("/:id", (req, res) => {
             baseUrl: req.baseUrl,
             coffeelog: coffeelog,
             user: user,
+            moment: moment,
             tabTitle: `${coffeelog.roasters} ${coffeelog.blend}`,
           });
         });
