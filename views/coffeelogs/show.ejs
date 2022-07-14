@@ -16,8 +16,10 @@
         <% if (currentUser) { %>
             <% if (currentUser._id == coffeelog.owner_id) { %>
             <div class="row">
-                <button class="col btn btn-secondary" onclick="location.href='/<%= coffeelog._id %>/edit'">Edit</button>
-                <form class="col" action="/<%= coffeelog._id %>?_method=delete" method="post">
+                <div class="col userEdit">
+                <button class="btn btn-secondary" onclick="location.href='/<%= coffeelog._id %>/edit'">Edit</button>
+                </div>
+                <form class="col userDelete" action="/<%= coffeelog._id %>?_method=delete" method="post">
                     <button class="btn btn-secondary" type="submit" value="Delete" onclick="return confirm('Delete this Entry?')">Delete</button>
                 </form>
             </div>

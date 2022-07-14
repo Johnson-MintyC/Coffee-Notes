@@ -1,5 +1,8 @@
 <%- include("../partials/head.ejs") %>
     <h1>Search Results:</h1>
+    <div class="searchback mb-3">
+        <button class= "btn btn-secondary" onclick="history.back()">Go Back</button>
+    </div>  
     <div class="container card-results">
         <% for (let log of coffeelogs) { %>
             <div class="card">

@@ -12,6 +12,14 @@ body {
     background-attachment: fixed;
 }
 
+/* navbar */
+
+.search-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 header a {
     text-decoration: none;
     color: #4F3E2F;
@@ -21,6 +29,11 @@ header a:hover {
     color: #E5CA9D
 }
 
+.canvaLogOut {
+    display: flex;
+    justify-content: end;
+}
+
 h1 {
     color: #4F3E2F;
     text-align: center;
@@ -28,6 +41,7 @@ h1 {
 
 h2 {
     color: #4F3E2F;
+    text-align: center;
 }
 
 .card-results {
@@ -76,10 +90,25 @@ h3 {
     --bs-btn-active-border-color: #E5CA9D;
     --bs-btn-focus-shadow-rgb: 79, 62, 47;
 }
+/* search */
+.searchback {
+    display: flex;
+    justify-content: center;
+}
 
 /* show page */
 .coffeemaininfo img {
     width: 100%;
+}
+
+.userDelete {
+    display: flex;
+    justify-content: center;
+}
+
+.userEdit{
+    display: flex;
+    justify-content: center;
 }
 
 .showrating {
@@ -95,5 +124,10 @@ h3 {
     header .nav-anc a {
         color: #E5CA9D;
         align-items: center;
+    }
+    .nav-anc {
+        display: flex;
+        align-items: center;
+
     }
 }
