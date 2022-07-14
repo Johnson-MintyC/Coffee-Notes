@@ -32,15 +32,13 @@
                 <form action="search" method="get" class="d-flex" role="search">
                   <input class="form-control me-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }">
                   <input class="btn btn-primary" type="submit" value="Search" />
+                  <label for="personalSearch">Search My Records: </label>
+                  <input type="checkbox" name="personalSearch" id="personalSearch" />
                 </form>
                 <form action="/logout?_method=DELETE" method="post">
                     <input class="btn btn-primary" type="submit" value="Log Out" />
                 </form>
               <% } else { %>
-              <form action="search" method="get" class="d-flex" role="search">
-                <input class="form-control me-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }">
-                <input class="btn btn-primary" type="submit" value="Search" />
-              </form>
               <a class="btn btn-primary" href="/login">Log In</a>
               <% } %>
           </ul>

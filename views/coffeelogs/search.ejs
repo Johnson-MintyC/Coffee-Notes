@@ -19,7 +19,11 @@
                             <a href="/<%= log._id %>"><img class="img-fluid" src="<%= log.img %>"></a>
                             <h4><%= log.blend %></h4>
                             <h4><%= log.method %></h4>
-                            <h4><%= log.rating %></h4>
+                            <div class="showrating">
+                                <% for (let i = 0; i < log.rating; i++) { %>
+                                    <img src="/assets/coffee-bean-ge62156025_640.png">
+                                <% } %>
+                            </div>
                           </div>
                         </div>
                         </div>

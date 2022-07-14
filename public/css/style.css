@@ -67,11 +67,28 @@ h3 {
     --bs-btn-focus-shadow-rgb: 229, 202, 157;
 }
 
-
+.btn-secondary {
+    --bs-btn-bg: #4F3E2F;
+    --bs-btn-border-color: #4F3E2F;
+    --bs-btn-hover-bg: #E5CA9D;
+    --bs-btn-hover-border-color: #4F3E2F;
+    --bs-btn-active-bg: #E5CA9D;
+    --bs-btn-active-border-color: #E5CA9D;
+    --bs-btn-focus-shadow-rgb: 79, 62, 47;
+}
 
 /* show page */
 .coffeemaininfo img {
     width: 100%;
+}
+
+.showrating {
+    display: flex;
+    justify-content: center;
+}
+
+.showrating img {
+    width: 2rem;
 }
 
 @media (min-width: 600px) {

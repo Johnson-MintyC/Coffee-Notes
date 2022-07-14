@@ -19,6 +19,7 @@ coffeelogRouter.get("/", (req, res) => {
         currentUser: req.session.currentUser,
         coffeelogs: coffeelogs,
         baseUrl: req.baseUrl,
+        moment: moment,
         tabTitle: "Coffee Notes Home",
       });
     });
@@ -67,41 +68,86 @@ coffeelogRouter.get("/myjournal", (req, res) => {
 
 //Search Results Route
 coffeelogRouter.get("/search", (req, res) => {
-  Coffeelog.find({
-    $or: [
-      {
-        roasters: {
-          $regex: req.query.search,
+  if (req.body.personalSearch === "on") {
+    Coffeelog.find({
+      $or: [
+        {
+          $and: [
+            {
+              roasters: {
+                $regex: req.query.search,
+              },
+            },
+            {
+              owner_id: req.session.currentUser._id,
+            },
+          ],
         },
-      },
-      {
-        blend: {
-          $regex: req.query.search,
+        {
+          blend: {
+            $regex: req.query.search,
+          },
         },
-      },
-      {
-        method: {
-          $regex: req.query.search,
+        {
+          method: {
+            $regex: req.query.search,
+          },
         },
-      },
-      {
-        flavors: {
-          $regex: req.query.search,
+        {
+          flavors: {
+            $regex: req.query.search,
+          },
         },
-      },
-    ],
-  })
-    .exec()
-    .then((searchresults) => {
-      res.render("coffeelogs/search.ejs", {
-        currentUser: req.session.currentUser,
-        coffeelogs: searchresults,
-        baseUrl: req.baseUrl,
-        currentUrl: req.url,
-        moment: moment,
-        tabTitle: "Search Results",
+      ],
+    })
+      .exec()
+      .then((searchresults) => {
+        res.render("coffeelogs/search.ejs", {
+          currentUser: req.session.currentUser,
+          coffeelogs: searchresults,
+          baseUrl: req.baseUrl,
+          currentUrl: req.url,
+          moment: moment,
+          tabTitle: "Search Results",
+        });
       });
-    });
+  } else {
+    Coffeelog.find({
+      $or: [
+        {
+          roasters: {
+            $regex: req.query.search,
+          },
+        },
+        {
+          blend: {
+            $regex: req.query.search,
+          },
+        },
+        {
+          method: {
+            $regex: req.query.search,
+          },
+        },
+        {
+          flavors: {
+            $regex: req.query.search,
+          },
+        },
+      ],
+    })
+      .exec()
+      .then((searchresults) => {
+        res.render("coffeelogs/search.ejs", {
+          currentUser: req.session.currentUser,
+          coffeelogs: searchresults,
+          baseUrl: req.baseUrl,
+          currentUrl: req.url,
+          moment: moment,
+          tabTitle: "Search Results",
+        });
+      });
+  }
 });
 
 //Show Route
