@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+  }
+
+body {
+    background-image: url(https://cdn.pixabay.com/photo/2015/01/07/16/37/wood-591631_1280.jpg);
+    background-repeat:no-repeat;
+    background-position: center center;
+}
+
+.card-results {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1fr;
+}
+
+.card {
+    width: 180px;
+}

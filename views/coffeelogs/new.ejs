@@ -2,110 +2,119 @@
 
     <h1>New Form</h1>
     <form action="/" method="post" enctype="multipart/form-data">
-        <p>
-            <label name="roasters">Brand/Roasters: </label>
-            <input type="text" name="roasters" id="roasters" required>
-        </p>
-        <p>
-            <label name="blend">Blend: </label>
-            <input type="text" name="blend" id="blend" required>
-        </p>
-        <p>
-            <label name="method">Method: </label>
-            <input type="text" name="method" id="method" list="commonmethods" required>
-            <datalist id="commonmethods">
-                <option>Expresso</option>
-                <option>Pour Over</option>
-                <option>Drip</option>
-                <option>Cold Brew</option>
-                <option>Press</option>
-                <option>Cupping</option>
-                <option>Siphon</option>
-                <option>Instant</option>
-            </datalist>
-        </p>
-        <p>
-            <label name="rating">Rating: </label>
-            <input type="number" name="rating" id="rating" min="0" max="5" required>
-        </p>
+        <div class="row">
+            <div class="mb-3 col">
+                <label class="form-label" name="roasters">Brand/Roasters: </label>
+                <input class="form-control" type="text" name="roasters" id="roasters" required>
+            </div>
+            <div class="mb-3 col">
+                <label class="form-label" name="blend">Blend: </label>
+                <input class="form-control" type="text" name="blend" id="blend" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-sm-7">
+                <label class="form-label" name="method">Method: </label>
+                <input class="form-control" type="text" name="method" id="method" list="commonmethods" required>
+                <datalist id="commonmethods">
+                    <option>Expresso</option>
+                    <option>Pour Over</option>
+                    <option>Drip</option>
+                    <option>Cold Brew</option>
+                    <option>Press</option>
+                    <option>Cupping</option>
+                    <option>Percolator</option>
+                    <option>Siphon</option>
+                    <option>Instant</option>
+                </datalist>
+            </div>
+            <div class="mb-3 col-sm">
+                <label class="form-label" name="rating">Rating: </label>
+                <input class="form-control" type="number" name="rating" id="rating" min="0" max="5" required>
+            </div>
+        </div>
         <h3>Optional Details</h3>
-        <p>
-            <label name="brewlocation">Brew Location: </label>
-            <input type="text" name="brewlocation" id="brewlocation" list="blocations">
+        <div class="mb-3">
+            <label class="form-label" name="brewlocation">Brew Location: </label>
+            <input class="form-control" type="text" name="brewlocation" id="brewlocation" list="blocations">
             <datalist id="blocations">
                 <option>Home</option>
             </datalist>
-        </p>
-        <p>
-            <label name="grindsize">Grind Size: </label>
-            <input type="text" name="grindsize" id="grindsize" list="genericsizes">
-            <datalist id="genericsizes">
-                <option>Fine</option>
-                <option>Medium</option>
-                <option>Coarse</option>
-                <option>Pre-Grounded</option>
-            </datalist>
-        </p>
-        <p>
-            <label name="roastlevel">Roast Level: </label>
-            <input type="text" name="roastlevel" id="roastlevel" list="commonroasts">
-            <datalist id="commonroasts">
-                <option>Light</option>
-                <option>Medium</option>
-                <option>Medium-Dark</option>
-                <option>Dark</option>
-            </datalist>
-        </p>
-        <p>
-            <label name="beanorigin">Bean Origin: </label>
-            <input type="text" name="beanorigin" id="beanorigin" list="commonvarieties">
+        </div>
+        <div class="row">
+            <div class="mb-3 col">
+                <label class="form-label" name="grindsize">Grind Size: </label>
+                <input class="form-control" type="text" name="grindsize" id="grindsize" list="genericsizes">
+                <datalist id="genericsizes">
+                    <option>Fine</option>
+                    <option>Medium</option>
+                    <option>Coarse</option>
+                    <option>Pre-Grounded</option>
+                </datalist>
+            </div>
+            <div class="mb-3 col">
+                <label class="form-label" name="roastlevel">Roast Level: </label>
+                <input class="form-control" type="text" name="roastlevel" id="roastlevel" list="commonroasts">
+                <datalist id="commonroasts">
+                    <option>Light</option>
+                    <option>Medium</option>
+                    <option>Medium-Dark</option>
+                    <option>Dark</option>
+                </datalist>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" name="beanorigin">Bean Origin: </label>
+            <input class="form-control" type="text" name="beanorigin" id="beanorigin" list="commonvarieties">
             <datalist id="commonvarieties">
                 <option>Arabica</option>
                 <option>Robusta</option>
                 <option>Liberica</option>
                 <option>Excelsa</option>
             </datalist>
-        </p>
-        <p>
-            <label name="coffeedose">Coffee Dose: </label>
-            <input type="number" name="coffeedose" id="coffeedose" min="0">
-            grams / oz
-        </p>
-        <p>
-            <label name="watervolume">Water Volume: </label>
-            <input type="number" name="watervolume" id="watervolume" min="0">
-            mL / oz
-        </p>
-        <p>
-            <label name="watertemp">Water Temperature: </label>
-            <input type="number" name="watertemp" id="watertemp" min="0">
+        </div>
+        <div class="row">
+            <div class="mb-3 col">
+                <label class="form-label" name="coffeedose">Coffee Dose: </label>
+                <input class="form-control" type="number" name="coffeedose" id="coffeedose" min="0">
+                grams / oz
+            </div>
+            <div class="mb-3 col">
+                <label class="form-label" name="watervolume">Water Volume: </label>
+                <input class="form-control" type="number" name="watervolume" id="watervolume" min="0">
+                mL / oz
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" name="watertemp">Water Temperature: </label>
+            <input class="form-control" type="number" name="watertemp" id="watertemp" min="0">
             °C / °F
-        </p>
+        </div>
         <h4>Flavors</h4>
-        <p>
-            <label name="flavornotes">Flavor Notes: </label>
+        <div class="mb-3">
+            <label class="form-label" name="flavornotes">Flavor Notes: </label>
             <br>
-            <textarea name="flavornotes" id="flavornotes" maxlength="300" placeholder="Separate the flavor notes by using hashtags #&#10e.g. #Chocolate #Acidic #Full Bodied"></textarea>
+            <textarea class="form-control" name="flavornotes" id="flavornotes" maxlength="300" placeholder="Separate the flavor notes by using hashtags #&#10e.g. #Chocolate #Acidic #Full Bodied"></textarea>
             <br>
             Character Limit: 300
-        </p>
+        </div>
         <h4>Additional Comments</h4>
-        <p>
-            <label name="comments">Comments: </label>
+        <div class="mb-3">
+            <label class="form-label" name="comments">Comments: </label>
             <br>
-            <textarea name="comments" id="comments" maxlength="500" placeholder="Comments here:"></textarea>
+            <textarea class="form-control" name="comments" id="comments" maxlength="500" placeholder="Comments here:"></textarea>
             <br>
             Character Limit: 500
-        </p>
+        </div>
         <h4>Thumbnail Image</h4>
-        <p>
-            <label name="img">Image: </label>
-            <input type="file" name="img" id="img">
+        <div class="mb-3">
+            <label class="form-label" for="formFile" name="img">Image: </label>
+            <input class="form-control" id="formFile" type="file" name="img" id="img">
             <br>
             Upload a thumbnail for this log entry
-        </p>
+        </div>
         
-        <input type="submit" value="Log Entry">
+        <input class="btn btn-primary" type="submit" value="Log Entry">
     </form>
-</body>
-</html>
+
+<%- include("../partials/foot.ejs") %>

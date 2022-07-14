@@ -10,12 +10,12 @@
           <% } %>
           <% if (messages.info) { %>
             <% for (let msg of messages.info) { %>
-              <p class="info"><%= msg %></p>
+              <p class="info alert alert-warning"><%= msg %></p>
             <% } %>
           <% } %>
           <% if (messages.error) { %>
             <% for (let msg of messages.error) { %>
-              <p class="error"><%= msg %></p>
+              <p class="error alert alert-danger"><%= msg %></p>
             <% } %>
           <% } %>
         </div>
@@ -30,7 +30,7 @@
             <input type="password" name="password" id="password" required />
           </p>
       
-          <input class="button button-primary" type="submit" value="Login" />
+          <input class="btn btn-primary" type="submit" value="Login" />
       
           <p>
             Don't have an account yet?
@@ -38,5 +38,5 @@
           </p>
         </form>
       </div>
-</body>
-</html>
+
+<%- include("../partials/foot.ejs") %>

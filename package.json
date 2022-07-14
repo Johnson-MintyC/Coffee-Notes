@@ -19,6 +19,9 @@
   },
   "name": "coffee-notes",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.4.0"
+  },
   "description": "Coffee Journal",
   "main": "server.js",
   "repository": {
