@@ -20,6 +20,15 @@ body {
     align-items: center;
 }
 
+.searchbutton {
+    display: flex;
+    justify-content: end;
+}
+
+.searchinput {
+    margin-bottom: 1rem;
+} 
+
 header a {
     text-decoration: none;
     color: #4F3E2F;
@@ -29,9 +38,12 @@ header a:hover {
     color: #E5CA9D
 }
 
+.nav-anc-1, .nav-anc-2 {
+    margin-bottom: 2rem;
+}
+
 .canvaLogOut {
-    display: flex;
-    justify-content: end;
+    margin-top: 6rem;
 }
 
 h1 {
@@ -43,6 +55,8 @@ h2 {
     color: #4F3E2F;
     text-align: center;
 }
+
+/* Cards */
 
 .card-results {
     display: flex;
@@ -121,13 +135,69 @@ h3 {
 }
 
 @media (min-width: 600px) {
-    header .nav-anc a {
+    .navbigscreen {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+    }
+
+    header .nav-anc-1 a, header .nav-anc-2 a {
         color: #E5CA9D;
         align-items: center;
     }
-    .nav-anc {
+    .nav-anc-1, .nav-anc-2 {
         display: flex;
         align-items: center;
-
+        margin-bottom: 0
     }
+    
+    .search-block {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        margin-bottom: 0;
+    }
+
+    .searchinput {
+        margin-bottom: 0;
+    } 
+
+    .canvaLogOut {
+        margin-top: 0;
+    }
+    
+    .navbar-brand {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nvalogin {
+        grid-column: 2/3;
+    }
+
+    /* card */
+    .card {
+    width: 25%
+    }
+
+    /* show */
+
+    .showimg {
+        display: flex;
+        justify-content: center;
+    }
+
+    .coffeemaininfo img{
+        width: 50%;
+    }
+
+    .showrating img {
+        width: 8%;
+    }
+
+    /* myjournal */
+
+    .myjournalsearchblock {
+        width: 50%;
+        margin: 0 auto;
+    }
+
 }

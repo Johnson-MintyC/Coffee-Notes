@@ -2,7 +2,9 @@
 
     <div class="coffeemaininfo">
         <h1><%= coffeelog.roasters %></h1>
-        <img src="<%= coffeelog.img %>">
+        <div class="showimg">
+            <img src="<%= coffeelog.img %>">
+        </div>
         <div class="row">
             <h3 class="col"><%= coffeelog.blend %></h3>
             <h3 class="col"><%= coffeelog.method %></h3>
@@ -26,7 +28,7 @@
             <% } %>
         <% } %>
     </div>
-    <h2>Addtional Information</h2>
+    <h2>Additional Information</h2>
     <div class="row">
         <div class="beaninfo col">
             <h3>Bean Info.</h3>
