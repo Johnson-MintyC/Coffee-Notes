@@ -7,7 +7,7 @@
     <div class="container card-results">
     <% for (let log of coffeelogs) { %>
         <div class="card">
-            <img class="img-fluid" src="<%= log.img %>">
+            <a href="/<%= log._id %>"><img class="img-fluid" src="<%= log.img %>"></a>
             <div class="card-body">
                 <h3><a href="/<%= log._id %>"><%= log.roasters %></a></h3>
                 <h4><%= log.blend %></h4>

@@ -7,17 +7,76 @@ html, body {
   }
 
 body {
-    background-image: url(https://cdn.pixabay.com/photo/2015/01/07/16/37/wood-591631_1280.jpg);
-    background-repeat:no-repeat;
-    background-position: center center;
+    background-image: url(https://static8.depositphotos.com/1007388/887/i/600/depositphotos_8873703-stock-photo-texture-a-sheet-of-the.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header a {
+    text-decoration: none;
+    color: #4F3E2F;
+}
+
+header a:hover {
+    color: #E5CA9D
+}
+
+h1 {
+    color: #4F3E2F;
+    text-align: center;
+}
+
+h2 {
+    color: #4F3E2F;
 }
 
 .card-results {
     display: flex;
     flex-wrap: wrap;
     width: 1fr;
+    text-align: center;
 }
 
 .card {
-    width: 180px;
+    width: 100%;
+    height: auto;
+    background-color: #E5CA9D;
+    color: #4F3E2F;
+}
+
+.card a {
+    text-decoration: none;
+    color: #4F3E2F;
+}
+
+.card a:hover {
+    text-decoration: none;
+}
+
+h3 {
+    text-align: center;
+} 
+
+.btn-primary {
+    --bs-btn-bg: #E5CA9D;
+    --bs-btn-border-color: #E5CA9D;
+    --bs-btn-hover-bg: #4F3E2F;
+    --bs-btn-hover-border-color: #E5CA9D;
+    --bs-btn-active-bg: #4F3E2F;
+    --bs-btn-active-border-color: #4F3E2F;
+    --bs-btn-focus-shadow-rgb: 229, 202, 157;
+}
+
+
+
+/* show page */
+.coffeemaininfo img {
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    header .nav-anc a {
+        color: #E5CA9D;
+        align-items: center;
+    }
 }

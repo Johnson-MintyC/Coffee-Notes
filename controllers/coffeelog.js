@@ -59,6 +59,7 @@ coffeelogRouter.get("/myjournal", (req, res) => {
         currentUser: req.session.currentUser,
         coffeelogs: personalcoffeelogs,
         baseUrl: req.baseUrl,
+        moment: moment,
         tabTitle: `${req.session.currentUser.username}'s Journal`,
       });
     });
@@ -97,6 +98,7 @@ coffeelogRouter.get("/search", (req, res) => {
         coffeelogs: searchresults,
         baseUrl: req.baseUrl,
         currentUrl: req.url,
+        moment: moment,
         tabTitle: "Search Results",
       });
     });
