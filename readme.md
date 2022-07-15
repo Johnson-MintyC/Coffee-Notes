@@ -27,6 +27,11 @@ The idea for Coffee-Notes came about from day to day coffee making and sharing c
 The measurements and preparation of the beans all affect the final taste, but writing every description per brew on a note is too much and there was no way to easily share and contribute to these messy notes.
 This is for the coffee lovers that want to track and find their ultimate cup of coffee.
 
+## Wireframe
+
+Whiteboard brainstorming
+![Screenshot1](./Screenshots/IMG_0888.HEIC)
+
 ## Functionality
 
 On this this app, it features:
@@ -38,7 +43,14 @@ On this this app, it features:
 1. Update and Delete old post
 1. Upload an image with the post
 1. User Singup
+1. Mobile friendly
 
 ## Screenshots
 
 ![Screenshot1](./Screenshots/Screen%20Shot%202022-07-15%20at%2010.28.14%20AM.png)
+![Screenshot1](./Screenshots/Screen%20Shot%202022-07-15%20at%2010.29.06%20AM.png)
+![Screenshot1](./Screenshots/Screen%20Shot%202022-07-15%20at%2010.37.01%20AM.png)
+![Screenshot1](./Screenshots/Screen%20Shot%202022-07-15%20at%2010.37.48%20AM.png)
+![Screenshot1](./Screenshots/Screen%20Shot%202022-07-15%20at%2010.38.13%20AM.png)
+
+## Future Addition
