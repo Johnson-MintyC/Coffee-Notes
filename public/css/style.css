@@ -10,6 +10,9 @@ body {
     background-image: url(https://static8.depositphotos.com/1007388/887/i/600/depositphotos_8873703-stock-photo-texture-a-sheet-of-the.jpg);
     background-size: cover;
     background-attachment: fixed;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
 }
 
 /* navbar */
@@ -54,6 +57,35 @@ h1 {
 h2 {
     color: #4F3E2F;
     text-align: center;
+}
+
+/* footer */
+
+.footerbar {
+    margin-top: 2rem;
+    background-color: #4F3E2F;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.footsocials {
+    display: flex;
+    justify-content: end;
+}
+
+.footsocials img {
+    max-height: 2rem;
+    margin: 20% 1rem;
+}
+
+.footname {
+    display: flex;
+    align-items: center;
+}
+
+.footname a {
+    text-decoration: none;
+    color: #E5CA9D;
 }
 
 /* Cards */
@@ -108,6 +140,11 @@ h3 {
     --bs-btn-active-border-color: #E5CA9D;
     --bs-btn-focus-shadow-rgb: 79, 62, 47;
 }
+
+.button-mb {
+    margin-bottom: 2rem;
+}
+
 /* search */
 .searchback {
     display: flex;
