@@ -30,7 +30,7 @@ This is for the coffee lovers that want to track and find their ultimate cup of 
 ## Wireframe
 
 Whiteboard brainstorming
-![Screenshot1](./Screenshots/IMG_0888.HEIC)
+![Screenshot1](./Screenshots/IMG_0888Small.jpeg)
 
 ## Functionality
 
