@@ -15,6 +15,7 @@ const User = require("../models/users");
 //Index Route
 coffeelogRouter.get("/", (req, res) => {
   Coffeelog.find()
+    .sort("-date")
     .exec()
     .then((coffeelogs) => {
       res.render("coffeelogs/index.ejs", {
@@ -55,6 +56,7 @@ coffeelogRouter.post("/", upload.single("img"), (req, res) => {
 //Personal Journals Route
 coffeelogRouter.get("/myjournal", (req, res) => {
   Coffeelog.find({ owner_id: req.session.currentUser._id })
+    .sort("-date")
     .exec()
     .then((personalcoffeelogs) => {
       res.render("coffeelogs/journal.ejs", {
@@ -135,6 +137,7 @@ coffeelogRouter.get("/myjournalsearch", (req, res) => {
       },
     ],
   })
+    .sort("-date")
     .exec()
     .then((searchresults) => {
       res.render("coffeelogs/search.ejs", {
@@ -199,6 +202,7 @@ coffeelogRouter.get("/search", (req, res) => {
       },
     ],
   })
+    .sort("-date")
     .exec()
     .then((searchresults) => {
       res.render("coffeelogs/search.ejs", {
