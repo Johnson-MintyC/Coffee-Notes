@@ -3,7 +3,7 @@
     <div class="form-container">
         <h1>Sign Up</h1>
       
-        <div class="flash-messages">
+        <div class="flash-messages bigsignup">
           <% if (messages.success) { %>
             <% for (let msg of messages.success) { %>
               <p class="success"><%= msg %></p>
@@ -11,17 +11,17 @@
           <% } %>
           <% if (messages.info) { %>
             <% for (let msg of messages.info) { %>
-              <p class="info"><%= msg %></p>
+              <p class="info alert alert-warning"><%= msg %></p>
             <% } %>
           <% } %>
           <% if (messages.error) { %>
             <% for (let msg of messages.error) { %>
-              <p class="error"><%= msg %></p>
+              <p class="error alert alert-warning"><%= msg %></p>
             <% } %>
           <% } %>
         </div>
       
-        <form action="<%= baseUrl %>" method="post">
+        <form class="bigsignup" action="<%= baseUrl %>" method="post">
           <div class="mb-3">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required />

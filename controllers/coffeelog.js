@@ -1,6 +1,8 @@
 const express = require("express");
 const moment = require("moment");
 
+moment.suppressDeprecationWarnings = true;
+
 const coffeelogRouter = express.Router();
 
 const upload = require("../middlewares/upload");
@@ -43,8 +45,7 @@ coffeelogRouter.post("/", upload.single("img"), (req, res) => {
   if (req.file) {
     req.body.img = req.file.path;
   } else {
-    req.body.img =
-      "https://loremflickr.com/cache/resized/7905_46862788644_dd275076b9_400_300_nofilter.jpg";
+    req.body.img = "https://loremflickr.com/320/240/coffeebeans";
   }
   req.body.owner_id = req.session.currentUser._id;
   Coffeelog.create(req.body);
@@ -68,6 +69,17 @@ coffeelogRouter.get("/myjournal", (req, res) => {
 
 //Journal Search Route
 coffeelogRouter.get("/myjournalsearch", (req, res) => {
+  let sttimeframe = "day";
+  const parseDate = moment(req.query.search);
+  if (parseDate.isValid()) {
+    const splitter = "[-/ .]";
+    let datecheck = req.query.search.split(splitter);
+    if (datecheck.length === 2) {
+      sttimeframe = "month";
+    } else if (datecheck.length === 1) {
+      sttimeframe = "year";
+    }
+  }
   Coffeelog.find({
     $or: [
       {
@@ -110,6 +122,17 @@ coffeelogRouter.get("/myjournalsearch", (req, res) => {
           { owner_id: req.session.currentUser._id },
         ],
       },
+      {
+        $and: [
+          {
+            createdAt: {
+              $gte: parseDate.startOf(sttimeframe).toISOString(),
+              $lte: parseDate.endOf(sttimeframe).toISOString(),
+            },
+          },
+          { owner_id: req.session.currentUser._id },
+        ],
+      },
     ],
   })
     .exec()
@@ -127,6 +150,25 @@ coffeelogRouter.get("/myjournalsearch", (req, res) => {
 
 //Search Results Route
 coffeelogRouter.get("/search", (req, res) => {
+  let sttimeframe = "day";
+  let parseDate = moment(req.query.search);
+  if (parseDate.isValid()) {
+    const splitter = /[-/ .]/;
+    let datecheck = req.query.search.split(splitter);
+    console.log(parseDate.year());
+    if (datecheck.length === 2) {
+      if (parseDate.year() === 2001) {
+        const currentyear = moment().year();
+        parseDate.set("year", currentyear);
+        console.log(parseDate);
+        sttimeframe = "month";
+      } else {
+        sttimeframe = "month";
+      }
+    } else if (datecheck.length === 1) {
+      sttimeframe = "year";
+    }
+  }
   Coffeelog.find({
     $or: [
       {
@@ -147,6 +189,12 @@ coffeelogRouter.get("/search", (req, res) => {
       {
         flavors: {
           $regex: req.query.search,
+        },
+      },
+      {
+        createdAt: {
+          $gte: parseDate.startOf(sttimeframe).toISOString(),
+          $lte: parseDate.endOf(sttimeframe).toISOString(),
         },
       },
     ],

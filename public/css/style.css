@@ -72,6 +72,10 @@ h2 {
     color: #4F3E2F;
 }
 
+.cardimg {
+    max-height: 10rem;
+}
+
 .card a {
     text-decoration: none;
     color: #4F3E2F;
@@ -198,6 +202,20 @@ h3 {
     .myjournalsearchblock {
         width: 50%;
         margin: 0 auto;
+    }
+
+    /* login */
+    .biglogin {
+        width: 40%;
+        margin: 0 auto;
+    }
+
+    /* signup */
+    .bigsignup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
 }
