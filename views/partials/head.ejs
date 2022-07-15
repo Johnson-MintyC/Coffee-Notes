@@ -39,6 +39,12 @@
                     <input class="btn btn-primary" type="submit" value="Log Out" />
                 </form>
               <% } else { %>
+                <form class="search-block" action="search" method="get" class="d-flex" role="search">
+                  <input class="form-control me-2 searchinput" type="search" name="search" id="search" placeholder="Search" aria-label="Search" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }">
+                  <div class="searchbutton">
+                      <input class="btn btn-primary" type="submit" value="Search" />
+                  </div>
+                </form>
               <div class="navlogin">
                 <a class="btn btn-primary" href="/login">Log In</a>
               </div>
