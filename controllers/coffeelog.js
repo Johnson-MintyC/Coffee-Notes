@@ -10,6 +10,209 @@ const Coffeelog = require("../models/coffeelog");
 const User = require("../models/users");
 
 //////////////////////////////////////////
+//      Search Functions
+//////////////////////////////////////////
+const searchFields = ["roasters", "blends", "method", "flavors"];
+
+const searchBasic = (searchKey, req) => {
+  let searchObj = {
+    [searchKey]: {
+      $regex: req.query.search,
+    },
+  };
+  return searchObj;
+};
+
+const searchInUser = (searchKey, req) => {
+  let searchObj = {
+    $and: [
+      searchBasic(searchKey, req),
+      { owner_id: req.session.currentUser._id },
+    ],
+  };
+  return searchObj;
+};
+
+const searchInUserBetweenD = (searchKey, req) => {
+  let parseStart = moment(req.query.qsdate);
+  let parseEnd = moment(req.query.qedate);
+  let searchObj = {
+    $and: [
+      { owner_id: req.session.currentUser._id },
+      {
+        createdAt: {
+          $gte: parseStart.startOf("day").toISOString(),
+          $lte: parseEnd.endOf("day").toISOString(),
+        },
+      },
+    ],
+  };
+  return searchObj;
+};
+
+const searchInUserDGreater = (searchKey, req) => {
+  let parseStart = moment(req.query.qsdate);
+  let parseEnd = moment(req.query.qedate);
+  let searchObj = {
+    $and: [
+      { owner_id: req.session.currentUser._id },
+      {
+        createdAt: {
+          $gte: parseStart.startOf("day").toISOString(),
+        },
+      },
+    ],
+  };
+  return searchObj;
+};
+
+const searchInUserDLesser = (searchKey, req) => {
+  let parseStart = moment(req.query.qsdate);
+  let parseEnd = moment(req.query.qedate);
+  let searchObj = {
+    $and: [
+      { owner_id: req.session.currentUser._id },
+      {
+        createdAt: {
+          $lte: parseEnd.endOf("day").toISOString(),
+        },
+      },
+    ],
+  };
+  return searchObj;
+};
+
+const searchWBasicInUserBetweenD = (searchKey, req) => {
+  let parseStart = moment(req.query.qsdate);
+  let parseEnd = moment(req.query.qedate);
+  let searchObj = {
+    $and: [
+      searchBasic(searchKey, req),
+      { owner_id: req.session.currentUser._id },
+      {
+        createdAt: {
+          $gte: parseStart.startOf("day").toISOString(),
+          $lte: parseEnd.endOf("day").toISOString(),
+        },
+      },
+    ],
+  };
+  return searchObj;
+};
+
+const searchWBasicInUserDGreater = (searchKey, req) => {
+  let parseStart = moment(req.query.qsdate);
+  let searchObj = {
+    $and: [
+      searchBasic(searchKey, req),
+      { owner_id: req.session.currentUser._id },
+      {
+        createdAt: {
+          $gte: parseStart.startOf("day").toISOString(),
+        },
+      },
+    ],
+  };
+  return searchObj;
+};
+
+const searchWBasicInUserDLesser = (searchKey, req) => {
+  let parseStart = moment(req.query.qsdate);
+  let parseEnd = moment(req.query.qedate);
+  let searchObj = {
+    $and: [
+      searchBasic(searchKey, req),
+      { owner_id: req.session.currentUser._id },
+      {
+        createdAt: {
+          $lte: parseEnd.endOf("day").toISOString(),
+        },
+      },
+    ],
+  };
+  return searchObj;
+};
+
+const searchBuilder = (searchFunc, req) => {
+  let bigSObj = {
+    $or: [],
+  };
+  const arrayOfFields = searchFields.map((param) => {
+    return searchFunc(param, req);
+  });
+  bigSObj.$or = arrayOfFields;
+  console.log(arrayOfFields);
+  return bigSObj;
+};
+
+const queryDateValidator = (req) => {
+  if (req.query.search && req.query.qsdate && req.query.qedate) {
+    return {
+      $or: [
+        searchWBasicInUserBetweenD("roasters", req),
+        searchWBasicInUserBetweenD("blend", req),
+        searchWBasicInUserBetweenD("method", req),
+        searchWBasicInUserBetweenD("flavors", req),
+      ],
+    };
+  } else if (req.query.search && req.query.qsdate) {
+    return {
+      $or: [
+        searchWBasicInUserDGreater("roasters", req),
+        searchWBasicInUserDGreater("blend", req),
+        searchWBasicInUserDGreater("method", req),
+        searchWBasicInUserDGreater("flavors", req),
+      ],
+    };
+  } else if (req.query.search && req.query.qedate) {
+    return {
+      $or: [
+        searchWBasicInUserDLesser("roasters", req),
+        searchWBasicInUserDLesser("blend", req),
+        searchWBasicInUserDLesser("method", req),
+        searchWBasicInUserDLesser("flavors", req),
+      ],
+    };
+  } else if (req.query.qsdate && req.query.qedate) {
+    return {
+      $or: [
+        searchInUserBetweenD("roasters", req),
+        searchInUserBetweenD("blend", req),
+        searchInUserBetweenD("method", req),
+        searchInUserBetweenD("flavors", req),
+      ],
+    };
+  } else if (req.query.qsdate) {
+    return {
+      $or: [
+        searchInUserDGreater("roasters", req),
+        searchInUserDGreater("blend", req),
+        searchInUserDGreater("method", req),
+        searchInUserDGreater("flavors", req),
+      ],
+    };
+  } else if (req.query.qedate) {
+    return {
+      $or: [
+        searchInUserDLesser("roasters", req),
+        searchInUserDLesser("blend", req),
+        searchInUserDLesser("method", req),
+        searchInUserDLesser("flavors", req),
+      ],
+    };
+  } else {
+    return {
+      $or: [
+        searchInUser("roasters", req),
+        searchInUser("blend", req),
+        searchInUser("method", req),
+        searchInUser("flavors", req),
+      ],
+    };
+  }
+};
+
+//////////////////////////////////////////
 //      Routes
 //////////////////////////////////////////
 //Index Route
@@ -71,72 +274,7 @@ coffeelogRouter.get("/myjournal", (req, res) => {
 
 //Journal Search Route
 coffeelogRouter.get("/myjournalsearch", (req, res) => {
-  let sttimeframe = "day";
-  const parseDate = moment(req.query.search);
-  if (parseDate.isValid()) {
-    const splitter = "[-/ .]";
-    let datecheck = req.query.search.split(splitter);
-    if (datecheck.length === 2) {
-      sttimeframe = "month";
-    } else if (datecheck.length === 1) {
-      sttimeframe = "year";
-    }
-  }
-  Coffeelog.find({
-    $or: [
-      {
-        $and: [
-          {
-            roasters: {
-              $regex: req.query.search,
-            },
-          },
-          { owner_id: req.session.currentUser._id },
-        ],
-      },
-      {
-        $and: [
-          {
-            blend: {
-              $regex: req.query.search,
-            },
-          },
-          { owner_id: req.session.currentUser._id },
-        ],
-      },
-      {
-        $and: [
-          {
-            method: {
-              $regex: req.query.search,
-            },
-          },
-          { owner_id: req.session.currentUser._id },
-        ],
-      },
-      {
-        $and: [
-          {
-            flavors: {
-              $regex: req.query.search,
-            },
-          },
-          { owner_id: req.session.currentUser._id },
-        ],
-      },
-      {
-        $and: [
-          {
-            createdAt: {
-              $gte: parseDate.startOf(sttimeframe).toISOString(),
-              $lte: parseDate.endOf(sttimeframe).toISOString(),
-            },
-          },
-          { owner_id: req.session.currentUser._id },
-        ],
-      },
-    ],
-  })
+  Coffeelog.find(queryDateValidator(req))
     .sort("-createdAt")
     .exec()
     .then((searchresults) => {
@@ -158,12 +296,10 @@ coffeelogRouter.get("/search", (req, res) => {
   if (parseDate.isValid()) {
     const splitter = /[-/ .]/;
     let datecheck = req.query.search.split(splitter);
-    console.log(parseDate.year());
     if (datecheck.length === 2) {
       if (parseDate.year() === 2001) {
         const currentyear = moment().year();
         parseDate.set("year", currentyear);
-        console.log(parseDate);
         sttimeframe = "month";
       } else {
         sttimeframe = "month";

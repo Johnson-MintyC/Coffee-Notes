@@ -32,6 +32,11 @@ body {
     margin-bottom: 1rem;
 } 
 
+.navbar-brand img {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 header a {
     text-decoration: none;
     color: #4F3E2F;

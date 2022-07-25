@@ -3,6 +3,10 @@
     <h1><%= currentUser.username %>'s Journal</h1>
     <form class="mb-3 myjournalsearchblock" action="myjournalsearch" method="get" class="d-flex" role="search">
         <input class="form-control mb-3" type="search" name="search" id="search" placeholder="Personal Journal Search" aria-label="Search" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }">
+        <label name="qsdate">Start: </label>
+        <input type="date" name="qsdate" id="qsdate">
+        <label name="qsdate">End: </label>
+        <input type="date" name="qedate" id="qedate">
         <div class="searchbutton">
             <input class="btn btn-secondary" type="submit" value="Search" />
         </div>
