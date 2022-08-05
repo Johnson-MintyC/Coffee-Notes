@@ -1,5 +1,6 @@
 const express = require("express");
 const moment = require("moment");
+const cloudinary = require("cloudinary").v2;
 
 moment.suppressDeprecationWarnings = true;
 
@@ -391,7 +392,7 @@ coffeelogRouter.get("/:id/edit", (req, res) => {
 });
 
 //Edit PUT Route
-coffeelogRouter.put("/:id", upload.single("img"), (req, res) => {
+coffeelogRouter.put("/:id", upload.single("img"), async (req, res) => {
   req.body.flavors = req.body.flavornotes.split("#").filter(Boolean);
   for (let i = 0; i < req.body.flavors.length; i++) {
     req.body.flavors[i] = req.body.flavors[i].trim();
@@ -407,12 +408,18 @@ coffeelogRouter.put("/:id", upload.single("img"), (req, res) => {
 });
 
 //Delete Route
-coffeelogRouter.delete("/:id", (req, res) => {
-  Coffeelog.findByIdAndDelete(req.params.id)
-    .exec()
-    .then(() => {
-      res.redirect("/");
-    });
+coffeelogRouter.delete("/:id", async (req, res) => {
+  const deletedLog = await Coffeelog.findByIdAndDelete(req.params.id).exec();
+  const imageHandle = async () => {
+    let imageName = "";
+    if (deletedLog) {
+      const tempArray = deletedLog.img.split(/[/.]/g);
+      imageName = tempArray[tempArray.length - 2];
+      await cloudinary.uploader.destroy(imageName);
+    }
+    res.redirect("/");
+  };
+  await imageHandle();
 });
 
 ///////////////////////////////////////////

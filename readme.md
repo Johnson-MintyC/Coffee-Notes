@@ -22,7 +22,7 @@ This CRUD app is built on and uses the following
 
 ## Brief
 
-Starting with these requirements as a [brief](https://git.generalassemb.ly/seir59anz/seir59anz-course-materials/tree/main/express/project).
+Starting with these requirements as a [brief](brief.md).
 The idea for Coffee-Notes came about from day to day coffee making and sharing coffee equipment among friends.
 The measurements and preparation of the beans all affect the final taste, but writing every description per brew on a note is too much and there was no way to easily share and contribute to these messy notes.
 This is for the coffee lovers that want to track and find their ultimate cup of coffee.
@@ -55,3 +55,6 @@ On this this app, it features:
 ![Screenshot1](./Screenshots/Screen%20Shot%202022-07-15%20at%2010.38.13%20AM.png)
 
 ## Future Addition
+
+Additional CSS tweaks
+Code Refactoring
